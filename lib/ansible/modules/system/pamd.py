@@ -272,6 +272,8 @@ class PamdService(object):
         self.rules = []
         try:
             for line in open(self.fname, 'r'):
+                if line.startswith('@include'):
+                    continue
                 if line.startswith('#') and not line.isspace():
                     self.preamble.append(line.rstrip())
                 elif not line.startswith('#') and not line.isspace():
